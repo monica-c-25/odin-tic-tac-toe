@@ -23,6 +23,15 @@ const gameBoard = (() => {
 
             //update board array with player mark
             board[index] = displayController.currentPlayer.mark;
+
+            //deactivate box to prevent further marks 
+            box.pointerEvents = 'none'
+
+            //update spots 
+            displayController.spots -= 1;
+
+            //check if there is a winner 
+            displayController.winner();
         })
     }
     )
@@ -58,8 +67,17 @@ const displayController = (() => {
         [2,4,6]
     ]
 
+    function winner() {
+        winningCombos.forEach((combo, index) => {
+            if (gameBoard.board[combo[0]] === this.currentPlayer.mark && combo[[1]] === this.currentPlayer.mark && combo[[2]] === this.currentPlayer.mark) {
+                finalWinner = true;
+            }
+        })
+    }
+
     return {
         currentPlayer,
+        spots,
     }
 })();
 
