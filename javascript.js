@@ -36,6 +36,11 @@ const gameBoard = (() => {
             //if there is no winner yet
             if (displayController.finalWinner === true) {
                 document.getElementById('subtext').innerHTML = `${displayController.currentPlayer.name} is the Winner`; 
+                let button = document.createElement('button');
+                button.setAttribute('id', button);
+                button.textContent = 'Play Again?'
+                document.getElementById('container').append(button);
+                button.addEventListener('click', displayController.reset)
                 } else {
                     (displayController.finalWinner === false) 
                         if (displayController.spots > 0) {
@@ -103,6 +108,15 @@ const displayController = (() => {
 
     function tie() {
         document.getElementById('subtext').innerHTML = "Nobody Wins! It's a Tie."
+        let button = document.createElement('button');
+        button.setAttribute('id', button);
+        button.textContent = 'Play Again?'
+        document.getElementById('container').append(button);
+        button.addEventListener('click', displayController.reset)
+    }
+
+    function reset() {
+        location.reload();
     }
 
     return {
@@ -112,6 +126,7 @@ const displayController = (() => {
         winner,
         nextPlayer,
         tie,
+        reset,
     }
 })();
 
