@@ -4,7 +4,7 @@ const player = (name, mark) => {
 }
 
 //Gameboard module 
-const Gameboard = (() => {
+const gameBoard = (() => {
 
     //initial board array
     let board = ['','','','','','','','',''];
@@ -17,6 +17,12 @@ const Gameboard = (() => {
     //event listeners for each box
     Array.from(document.getElementsByClassName('box')).forEach((box, index) => {
         box.addEventListener('click', () => {
+
+            //add player mark
+            box.innerHTML = displayController.currentPlayer.mark;
+
+            //update board array with player mark
+            board[index] = displayController.currentPlayer.mark;
         })
     }
     )
@@ -51,6 +57,10 @@ const displayController = (() => {
         [0,4,8],
         [2,4,6]
     ]
+
+    return {
+        currentPlayer,
+    }
 })();
 
 
