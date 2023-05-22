@@ -36,10 +36,12 @@ const gameBoard = (() => {
             //if there is no winner yet
             if (displayController.finalWinner === true) {
                 document.getElementById('subtext').innerHTML = `${displayController.currentPlayer.name} is the Winner`; 
+
+                //create reset button to play game again
                 let button = document.createElement('button');
                 button.setAttribute('id', button);
                 button.textContent = 'Play Again?'
-                document.getElementById('container').append(button);
+                document.body.appendChild(button);
                 button.addEventListener('click', displayController.reset)
                 } else {
                     (displayController.finalWinner === false) 
@@ -108,10 +110,12 @@ const displayController = (() => {
 
     function tie() {
         document.getElementById('subtext').innerHTML = "Nobody Wins! It's a Tie."
+
+        //create reset button to play game again
         let button = document.createElement('button');
         button.setAttribute('id', button);
         button.textContent = 'Play Again?'
-        document.getElementById('container').append(button);
+        document.body.appendChild(button);
         button.addEventListener('click', displayController.reset)
     }
 
